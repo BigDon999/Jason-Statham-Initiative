@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jasonstatham Initiative - Donation Site</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
+    />
+    <style>
+      :root {
+        --primary-black: #121212;
+        --dark-gray: #2d2d2d;
+        --medium-gray: #4a4a4a;
+        --light-gray: #8a8a8a;
+        --very-light-gray: #e0e0e0;
+        --white: #ffffff;
+      }
+
+      body {
+        background-color: var(--white);
+        color: var(--primary-black);
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      
+
+      .navbar {
+        background-color: var(--primary-black);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1050;
+      }
+
+      .navbar-brand {
+        color: var(--white) !important;
+        font-weight: 700;
+        font-size: 1.8rem;
+      }
+
+      .nav-link {
+        color: var(--very-light-gray) !important;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .nav-link:hover {
+        color: var(--white) !important;
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: var(--white);
+        transition: width 0.3s ease;
+      }
+
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      .hero-section {
+        background: linear-gradient(
+            rgba(18, 18, 18, 0.8),
+            rgba(18, 18, 18, 0.9)
+          ),
+          url("images/delsie-bohol-IVfORR3ZqH4-unsplash.jpg") center/cover
+            no-repeat;
+        color: var(--white);
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+      }
+
+      .hero-content {
+        max-width: 800px;
+        padding: 20px;
+        z-index: 2;
+      }
+
+      .navbar-collapse {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--primary-black);
+        padding: 1rem;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1049;
+      }
+
+      @media (min-width: 992px) {
+        .navbar-collapse {
+          position: static;
+          background-color: transparent;
+          padding: 0;
+          box-shadow: none;
+        }
+      }
+
+      
+
+      .section-title {
+        color: var(--primary-black);
+        font-weight: 700;
+        margin-bottom: 50px;
+        text-align: center;
+        position: relative;
+        margin-top: 30px;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        width: 80px;
+        height: 4px;
+       
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: var(--primary-black);
+      }
+
+      /* About Section Styles */
+      .about-intro {
+        display: flex;
+        align-items: center;
+        min-height: 80vh;
+        padding: 80px 0;
+      }
+
+      .about-image {
+        width: 40%;
+        padding-left: 60px;
+      }
+
+      .about-image img {
+        width: 100%;
+        height: 600px;
+        object-fit: cover;
+        border-radius: 15px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .about-content {
+        width: 60%;
+        padding-left: 80px;
+      }
+
+      .about-content h3 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: var(--primary-black);
+      }
+
+      .about-content .lead {
+        font-size: 1.1rem;
+        font-weight: 400;
+        margin-bottom: 20px;
+        color: var(--dark-gray);
+      }
+
+      .about-content p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 15px;
+        color: var(--medium-gray);
+      }
+
+      .about-content ul {
+        list-style: none;
+        padding: 0;
+        margin-top: 20px;
+      }
+
+      .about-content ul li {
+        font-size: 0.9rem;
+        padding: 4px 0;
+        padding-left: 20px;
+        position: relative;
+        color: var(--medium-gray);
+      }
+
+      .about-content ul li:before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--dark-gray);
+        font-weight: bold;
+        font-size: 1rem;
+      }
+
+      @media (max-width: 768px) {
+        .about-intro {
+          flex-direction: column;
+          text-align: center;
+          padding: 60px 20px;
+        }
+        
+        .about-image, .about-content {
+          width: 100%;
+          padding: 0;
+        }
+        
+        .about-image {
+          margin-bottom: 30px;
+        }
+
+        .about-image img {
+          height: 300px;
+        }
+        
+        .about-content h3 {
+          font-size: 1.8rem;
+        }
+      }
+
+      .mission-card {
+        background-color: var(--white);
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        height: 100%;
+        transition: transform 0.3s ease;
+      }
+
+      .mission-card:hover {
+        transform: translateY(-10px);
+      }
+
+      .mission-icon {
+        font-size: 2.5rem;
+        color: var(--dark-gray);
+        margin-bottom: 20px;
+      }
+
+      /* Donors Section */
+      .donors-section {
+        padding: 80px 0;
+        background-color: var(--white);
+        overflow: hidden;
+      }
+
+      .donors-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+        justify-content: center;
+        padding: 0 20px;
+      }
+
+      .donor-item {
+        text-align: center;
+        width: 120px;
+      }
+
+      .donor-avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin: 0 auto 15px;
+        border: 3px solid var(--very-light-gray);
+        transition: all 0.3s ease;
+      }
+
+      .donor-item:hover .donor-avatar {
+        border-color: var(--dark-gray);
+        transform: scale(1.05);
+      }
+
+      .donor-name {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--primary-black);
+        margin-bottom: 5px;
+      }
+
+      .donor-type {
+        font-size: 0.8rem;
+        color: var(--light-gray);
+      }
+
+      /* Testimonials Carousel */
+      .testimonials-section {
+        padding: 80px 0;
+        background-color: var(--primary-black);
+        overflow: hidden;
+        position: relative;
+      }
+
+      .testimonials-section .section-title {
+        color: var(--white);
+      }
+
+      .testimonials-section .section-title::after {
+        background-color: var(--white);
+      }
+
+      .testimonials-carousel {
+        display: flex;
+        animation: scroll 30s linear infinite;
+        gap: 30px;
+      }
+
+     .testimonial-card {
+  background-color: var(--white);
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  padding: 30px;
+  min-width: 350px;
+  flex-shrink: 0;
+  width: 500px;
+}
+
+      .testimonial-card p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: 25px;
+        font-style: italic;
+        color: var(--dark-gray);
+      }
+
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+      }
+
+      .testimonial-author img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin-right: 15px;
+        border: 3px solid var(--very-light-gray);
+      }
+
+      .testimonial-author h6 {
+        margin: 0;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--primary-black);
+      }
+
+      .testimonial-author small {
+        color: var(--light-gray);
+        font-size: 0.9rem;
+      }
+
+      @keyframes scroll {
+        0% {
+          transform: translateX(100%);
+        }
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+
+      .testimonial-card {
+        background-color: var(--white);
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        margin-bottom: 30px;
+        border-left: 4px solid var(--dark-gray);
+      }
+
+      .footer {
+  background-color: var(--primary-black);
+  color: var(--very-light-gray);
+  padding: 50px 0 0;
+  margin-bottom: 0 !important;
+      .footer .container {
+        padding-bottom: 0 !important;
+        margin-bottom: 0 !important;
+      }
+      }
+
+      .footer-link {
+        color: var(--very-light-gray);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-link:hover {
+        color: var(--white);
+      }
+
+      .social-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: var(--dark-gray);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 10px;
+        transition: background-color 0.3s ease;
+      }
+
+      .social-icon:hover {
+        background-color: var(--medium-gray);
+      }
+
+      .btn-donate {
+        background-color: var(--primary-black);
+        color: var(--white);
+        border: 2px solid var(--primary-black);
+        padding: 12px 30px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        transform: scale(1);
+      }
+
+      .btn-donate:hover {
+        background-color: #e0e0e0;
+        color: #5c5a5a;
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .contact-card {
+        background-color: var(--white);
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+      }
+
+      .contact-icon {
+        font-size: 2rem;
+        color: var(--dark-gray);
+        margin-bottom: 20px;
+      }
+
+      .form-control {
+        border: 1px solid var(--very-light-gray);
+        padding: 12px 15px;
+        border-radius: 5px;
+      }
+
+      .form-control:focus {
+        border-color: var(--medium-gray);
+        box-shadow: 0 0 0 0.25rem rgba(45, 45, 45, 0.25);
+      }
+
+      .donation-item {
+        background-color: var(--white);
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        text-align: center;
+        height: 100%;
+        transition: all 0.3s ease;
+      }
+
+      .donation-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .donation-icon {
+        font-size: 3rem;
+        color: var(--dark-gray);
+        margin-bottom: 20px;
+      }
+
+      .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        margin-bottom: 30px;
+        height: 250px;
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.1);
+      }
+
+      .gallery-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(18, 18, 18, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .gallery-item:hover .gallery-overlay {
+        opacity: 1;
+      }
+
+      .gallery-text {
+        color: var(--white);
+        text-align: center;
+        padding: 20px;
+      }
+
+      /* Slide-in Animation */
+      @keyframes slide-in {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      .slide-in {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.7s cubic-bezier(.77,0,.18,1), transform 0.7s cubic-bezier(.77,0,.18,1);
+      }
+      .slide-in.visible {
+        opacity: 1;
+        transform: none;
+        animation: slide-in 0.7s cubic-bezier(.77,0,.18,1) forwards;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      function revealSections() {
+        document.querySelectorAll('.slide-in').forEach(function(section) {
+          var rect = section.getBoundingClientRect();
+          if (rect.top < window.innerHeight - 40) {
+            section.classList.add('visible');
+          } else {
+            section.classList.remove('visible');
+          }
+        });
+      }
+      window.addEventListener('scroll', revealSections);
+      revealSections();
+    });
+    </script>
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">Jasonstatham Initiative</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#donate">Donate</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section slide-in">
+      <div class="hero-content">
+        <h1 class="display-4 fw-bold mb-4">Make a Difference Today</h1>
+        <p class="lead mb-5">
+          Join Jasonstathon in our mission to create positive change in
+          communities around the world.
+        </p>
+        <a href="#donate" class="btn btn-donate btn-lg">Donate Now</a>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="section slide-in">
+      <div class="container">
+        <h2 class="section-title">Our Impact in Action</h2>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="gallery-item">
+              <img
+                src="images/community service.jpg"
+                alt="Volunteers helping community"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="gallery-overlay">
+                <div class="gallery-text">
+                  <h5>Community Support</h5>
+                  <p>Volunteers making a difference</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="gallery-item">
+              <img
+                src="images/donation.jpg"
+                alt="Donation drive event"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="gallery-overlay">
+                <div class="gallery-text">
+                  <h5>Donation Events</h5>
+                  <p>Community coming together</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="gallery-item">
+              <img
+                src="images/support.jpg"
+                alt="Children receiving help"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="gallery-overlay">
+                <div class="gallery-text">
+                  <h5>Changing Lives</h5>
+                  <p>Children receiving support</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="gallery-item">
+              <img
+                src="images/food.jpg"
+                alt="Food distribution"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="gallery-overlay">
+                <div class="gallery-text">
+                  <h5>Food Security</h5>
+                  <p>Distributing essential supplies</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="gallery-item">
+              <img
+                src="images/health.jpg"
+                alt="Medical aid being provided"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="gallery-overlay">
+                <div class="gallery-text">
+                  <h5>Healthcare Access</h5>
+                  <p>Providing medical assistance</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="gallery-item">
+              <img
+                src="images/education.jpg"
+                alt="Education support"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="gallery-overlay">
+                <div class="gallery-text">
+                  <h5>Education Programs</h5>
+                  <p>Supporting learning initiatives</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section slide-in">
+      <!-- About Intro -->
+      <div class="about-intro">
+        <div class="about-image">
+          <img
+            src="images/about.jpg"
+            alt="Jasonstathon team helping community"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div class="about-content">
+          <h3>What is Jasonstatham Initiative?</h3>
+          <p class="lead">
+            Jasonstatham Initiative is a global charitable organization dedicated to
+            creating sustainable change in underserved communities worldwide.
+          </p>
+          <p>
+            Founded in 2015, Jasonstathon began as a small initiative to
+            address the lack of educational resources in rural communities.<br/>
+            Today, we have expanded our mission to encompass healthcare access,
+            food security, clean water initiatives, and economic empowerment
+            programs.
+          </p>
+          <p>
+            Our approach is unique - we work directly with local communities to
+            identify their most pressing needs <br/>and develop customized solutions
+            that are sustainable and culturally appropriate.<br/> We believe in
+            empowering communities to become self-sufficient rather than creating
+            dependency.
+          </p>
+          <p>
+            What sets Jasonstatham Initiative apart is our commitment to transparency and
+            measurable impact.<br/> We provide detailed reports on how donations are
+            used and the tangible results achieved. Over 90% of all donations go
+            directly to programs and services.
+          </p>
+          <p>Through the generosity of donors like you, we have:</p>
+          <ul>
+            <li>Built 25 schools in underserved regions</li>
+            <li>Provided clean water access to over 50,000 people</li>
+            <li>Delivered healthcare services to more than 100,000 individuals</li>
+            <li>Supported economic development for 15,000 families</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Our Mission -->
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md-12">
+            <h3 class="text-center mb-5">Our Mission</h3>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="mission-card">
+              <div class="mission-icon text-center">
+                <i class="bi bi-bullseye"></i>
+              </div>
+              <h4 class="text-center mb-3">Our Vision</h4>
+              <p class="text-center">
+                To create a world where every individual has access to basic
+                necessities and opportunities for growth.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="mission-card">
+              <div class="mission-icon text-center">
+                <i class="bi bi-people"></i>
+              </div>
+              <h4 class="text-center mb-3">Community Focus</h4>
+              <p class="text-center">
+                We work directly with local communities to identify needs and
+                implement sustainable solutions.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="mission-card">
+              <div class="mission-icon text-center">
+                <i class="bi bi-graph-up"></i>
+              </div>
+              <h4 class="text-center mb-3">Impact Measurement</h4>
+              <p class="text-center">
+                We track and measure our impact to ensure transparency and
+                maximize effectiveness of donations.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Donors -->
+      <div class="donors-section">
+        <h3 class="text-center mb-5">Our Donors</h3>
+        <div class="donors-grid">
+          <div class="donor-item">
+            <img
+              src="images/Elon_Musk.jpg"
+              class="donor-avatar"
+              alt="Elon Musk"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="donor-name">Elon Musk</div>
+            
+          </div>
+          <div class="donor-item">
+            <img
+              src="images/The-New-York-Times.png"
+              class="donor-avatar"
+              alt="New York Times"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="donor-name">New Yok Times</div>
+            
+          </div>
+          <div class="donor-item">
+            <img
+              src="images/fedex-icon-filled-256.png"
+              class="donor-avatar"
+              alt="fedex"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="donor-name">Fedex</div>
+          </div>
+          <div class="donor-item">
+            <img
+              src="images/stallone.jpg"
+              class="donor-avatar"
+              alt="stallone"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="donor-name">Slyvester Stallone</div>
+          </div>
+          <div class="donor-item">
+            <img
+              src="images/Dwayne-Johnson.webp"
+              class="donor-avatar"
+              alt="Dwayne-Johnson"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="donor-name">Dwayne-Johnson</div>
+          </div>
+          <div class="donor-item">
+            <img
+              src="images/reeves.jpeg"
+              class="donor-avatar"
+              alt="reeves"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="donor-name">Keanu Reeves</div>
+          </div>
+          <div class="donor-item">
+            <img
+              src="images/Brad_Pitt.jpg"
+              class="donor-avatar"
+              alt="pitt"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="donor-name">Brad Pitt</div>
+          </div>
+        </div>
+      </div>
+
+     <!-- Testimonials -->
+<div class="testimonials-section">
+  <h2 class="section-title">Testimonials</h2>
+  <div class="testimonials-carousel">
+    <div class="testimonial-card">
+      <p>
+        "Jasonstathon has transformed our community. Their approach is
+        thoughtful and sustainable. The impact they've made in our village
+        is truly remarkable."
+      </p>
+      <div class="testimonial-author">
+        <img
+          src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80"
+          alt="Sarah Miller"
+          loading="lazy"
+          decoding="async"
+        />
+        <div>
+          <h6>Sarah Miller</h6>
+          <small>Community Leader</small>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <p>
+        "I've been donating for three years. The transparency and impact
+        of this organization is unmatched. Every dollar truly makes a
+        difference."
+      </p>
+      <div class="testimonial-author">
+        <img
+          src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80"
+          alt="Thomas Wilson"
+          loading="lazy"
+          decoding="async"
+        />
+        <div>
+          <h6>Thomas Wilson</h6>
+          <small>Long-term Donor</small>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <p>
+        "The programs they've implemented in our school have made a real
+        difference in children's lives. Education is the key to breaking
+        the cycle of poverty."
+      </p>
+      <div class="testimonial-author">
+        <img
+          src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80"
+          alt="Lisa Kim"
+          loading="lazy"
+          decoding="async"
+        />
+        <div>
+          <h6>Lisa Kim</h6>
+          <small>Educator</small>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <p>
+        "The healthcare initiatives have saved countless lives in our
+        region. Professional, compassionate, and incredibly effective in
+        their approach."
+      </p>
+      <div class="testimonial-author">
+        <img
+          src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80"
+          alt="Dr. Michael Chen"
+          loading="lazy"
+          decoding="async"
+        />
+        <div>
+          <h6>Dr. Michael Chen</h6>
+          <small>Medical Professional</small>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <p>
+        "Through their economic empowerment programs, I was able to start
+        my own business and provide for my family. Forever grateful!"
+      </p>
+      <div class="testimonial-author">
+        <img
+          src="https://images.unsplash.com/photo-1541101767792-f9b2b1c4f127?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80"
+          alt="Maria Rodriguez"
+          loading="lazy"
+          decoding="async"
+        />
+        <div>
+          <h6>Maria Rodriguez</h6>
+          <small>Entrepreneur</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- What You Can Donate Section -->
+    <section class="section slide-in">
+      <div class="container">
+        <h2 class="section-title">What You Can Donate</h2>
+        <div class="row">
+          <div class="col-md-4 mb-4">
+            <div class="donation-item">
+              <div class="donation-icon">
+                <i class="bi bi-cash"></i>
+              </div>
+              <h4>Financial Donations</h4>
+              <p>
+                Monetary contributions allow us to purchase exactly what
+                communities need most. Your donation can provide:
+              </p>
+              <ul class="text-start">
+                <li>$25 - School supplies for 5 children</li>
+                <li>$50 - Clean water for a family for a month</li>
+                <li>$100 - Medical checkup for 10 people</li>
+                <li>$250 - Build 10 meters of school fence</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="donation-item">
+              <div class="donation-icon">
+                <i class="bi bi-box"></i>
+              </div>
+              <h4>In-Kind Donations</h4>
+              <p>Donate physical items that directly support our programs:</p>
+              <ul class="text-start">
+                <li>School supplies and books</li>
+                <li>Medical equipment and supplies</li>
+                <li>Clothing and hygiene products</li>
+                <li>Food and nutritional supplements</li>
+                <li>Building materials</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="donation-item">
+              <div class="donation-icon">
+                <i class="bi bi-person"></i>
+              </div>
+              <h4>Volunteer Time</h4>
+              <p>Your skills and time are valuable contributions:</p>
+              <ul class="text-start">
+                <li>Teaching and mentoring</li>
+                <li>Medical and healthcare services</li>
+                <li>Construction and maintenance</li>
+                <li>Administrative support</li>
+                <li>Fundraising and event planning</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="donation-item">
+              <div class="donation-icon">
+                <i class="bi bi-laptop"></i>
+              </div>
+              <h4>Professional Services</h4>
+              <p>Offer your expertise to help us grow:</p>
+              <ul class="text-start">
+                <li>Legal and accounting services</li>
+                <li>Marketing and communications</li>
+                <li>IT and technical support</li>
+                <li>Grant writing and research</li>
+                <li>Project management</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="donation-item">
+              <div class="donation-icon">
+                <i class="bi bi-house-door"></i>
+              </div>
+              <h4>Property and Facilities</h4>
+              <p>Contribute resources for our programs:</p>
+              <ul class="text-start">
+                <li>Land for community projects</li>
+                <li>Buildings for schools or clinics</li>
+                <li>Equipment and machinery</li>
+                <li>Transportation vehicles</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="donation-item">
+              <div class="donation-icon">
+                <i class="bi bi-heart"></i>
+              </div>
+              <h4>Monthly Giving</h4>
+              <p>Sustainable support through recurring donations:</p>
+              <ul class="text-start">
+                <li>Automatic monthly contributions</li>
+                <li>Flexible amount adjustments</li>
+                <li>Quarterly impact reports</li>
+                <li>Special donor recognition</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section mb-5 slide-in">
+      <div class="container">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="row">
+          <div class="col-md-6 mb-5">
+            <div class="contact-card">
+              <h4 class="mb-4">Get In Touch</h4>
+              <form action="https://formspree.io/f/xldwaeez" method="POST">
+                <div class="mb-3">
+                  <input type="text" class="form-control" name="name" placeholder="Your Name" required />
+                </div>
+                <div class="mb-3">
+                  <input type="email" class="form-control" name="email" placeholder="Your Email" required />
+                </div>
+                <div class="mb-3">
+                  <textarea class="form-control" name="message" rows="5" placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-donate">Send Message</button>
+              </form>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.querySelector('form[action="https://formspree.io/f/xldwaeez"]');
+  if (form) {
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const formData = {
+        name: form.elements['name'].value,
+        email: form.elements['email'].value,
+        message: form.elements['message'].value
+      };
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        });
+        if (response.ok) {
+          alert('Thank you! Your message has been sent.');
+          form.reset();
+        } else {
+          alert('There was a problem submitting your form. Please try again.');
+        }
+      } catch (error) {
+        alert('Network error. Please try again later.');
+      }
+    });
+  }
+});
+</script>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="contact-card h-100">
+              <h4 class="mb-4">Contact Information</h4>
+              <div class="d-flex mb-4">
+                <div class="contact-icon me-3">
+                  <i class="bi bi-geo-alt"></i>
+                </div>
+                <div>
+                  <h5>Our Location</h5>
+                  <p>123 Charity Street, Suite 100<br />City, State 12345</p>
+                </div>
+              </div>
+              <div class="d-flex mb-4">
+                <div class="contact-icon me-3">
+                  <i class="bi bi-telephone"></i>
+                </div>
+                <div>
+                  <h5>Phone Number</h5>
+                  <p>+1 (555) 123-4567</p>
+                </div>
+              </div>
+              <div class="d-flex mb-4">
+                <div class="contact-icon me-3">
+                  <i class="bi bi-envelope"></i>
+                </div>
+                <div>
+                  <h5>Email Address</h5>
+                  <p>info@jasonstathon.org</p>
+                </div>
+              </div>
+              <div class="d-flex">
+                <div class="contact-icon me-3">
+                  <i class="bi bi-clock"></i>
+                </div>
+                <div>
+                  <h5>Office Hours</h5>
+                  <p>Monday - Friday: 9AM - 5PM<br />Saturday: 10AM - 2PM</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Donate Section -->
+    <section id="donate" class="section mb-5 slide-in">
+      <div class="container">
+        <h2 class="section-title">Make a Donation</h2>
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="card border-0 shadow-lg">
+              <div class="card-body p-5">
+                <h3 class="text-center mb-4">Support Our Cause</h3>
+                <p class="text-center mb-5">
+                  Your donation helps us continue our mission to create positive
+                  change in communities worldwide.
+                </p>
+
+                <div class="row mb-4">
+                  <div class="col-md-3 col-6 mb-3">
+                    <button type="button" class="btn btn-outline-dark w-100 py-3" onclick="setDonationAmount(25)">$25</button>
+                  </div>
+                  <div class="col-md-3 col-6 mb-3">
+                    <button type="button" class="btn btn-outline-dark w-100 py-3" onclick="setDonationAmount(50)">$50</button>
+                  </div>
+                  <div class="col-md-3 col-6 mb-3">
+                    <button type="button" class="btn btn-outline-dark w-100 py-3" onclick="setDonationAmount(100)">$100</button>
+                  </div>
+                  <div class="col-md-3 col-6 mb-3">
+                    <button type="button" class="btn btn-outline-dark w-100 py-3" onclick="setDonationAmount('')">Other</button>
+                  </div>
+                </div>
+
+                <div class="mb-4">
+                  <label class="form-label">Donation Amount</label>
+                  <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input
+                      type="number"
+                      class="form-control form-control-lg"
+                      placeholder="Enter amount"
+                      id="donation-amount"
+                    />
+<script>
+function setDonationAmount(amount) {
+  var input = document.getElementById('donation-amount');
+  input.value = amount;
+  input.focus();
+}
+</script>
+                  </div>
+                </div>
+
+                <div class="mb-4">
+                  <label class="form-label">Donation Type</label>
+                  <select class="form-select form-select-lg">
+                    <option selected>One-time Donation</option>
+                    <option>Monthly Donation</option>
+                    <option>Quarterly Donation</option>
+                    <option>Annual Donation</option>
+                  </select>
+                </div>
+
+                <div class="form-check mb-4">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="anonymous"
+                  />
+                  <label class="form-check-label" for="anonymous">
+                    Make this donation anonymous
+                  </label>
+                </div>
+
+                <a href="https://wa.me/" target="_blank" class="btn btn-donate w-100 btn-lg" style="text-align:center;">Proceed to Payment via WhatsApp</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 mb-4">
+            <h4 class="text-white mb-4">Jasonstatham Initiative</h4>
+            <p>
+              Creating positive change through community-driven initiatives and
+              sustainable solutions.
+            </p>
+            <div class="mt-4">
+              <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="social-icon"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="social-icon"
+                ><i class="bi bi-instagram"></i
+              ></a>
+              <a href="#" class="social-icon"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+          <div class="col-md-2 mb-4">
+            <h5 class="text-white mb-4">Quick Links</h5>
+            <ul class="list-unstyled">
+              <li class="mb-2"><a href="#home" class="footer-link">Home</a></li>
+              <li class="mb-2">
+                <a href="#about" class="footer-link">About</a>
+              </li>
+              <li class="mb-2">
+                <a href="#contact" class="footer-link">Contact</a>
+              </li>
+              <li class="mb-2">
+                <a href="#donate" class="footer-link">Donate</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-3 mb-4">
+            <h5 class="text-white mb-4">Our Programs</h5>
+            <ul class="list-unstyled">
+              <li class="mb-2">
+                <a href="#" class="footer-link">Education Initiative</a>
+              </li>
+              <li class="mb-2">
+                <a href="#" class="footer-link">Healthcare Access</a>
+              </li>
+              <li class="mb-2">
+                <a href="#" class="footer-link">Clean Water Projects</a>
+              </li>
+              <li class="mb-2">
+                <a href="#" class="footer-link">Community Development</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-3 mb-4">
+            <h5 class="text-white mb-4">Newsletter</h5>
+            <p>
+              Subscribe to our newsletter for updates on our work and impact.
+            </p>
+            <div class="input-group">
+              <input
+                type="email"
+                class="form-control"
+                placeholder="Your Email"
+              />
+              <button class="btn btn-outline-light">Subscribe</button>
+            </div>
+          </div>
+        </div>
+        <hr class="my-4 bg-secondary" />
+        <div class="row">
+          <div class="col-md-6 text-center text-md-start">
+            <p>&copy; 2023 Jasonstathon. All rights reserved.</p>
+          </div>
+          <div class="col-md-6 text-center text-md-end">
+            <a href="#" class="footer-link me-3">Privacy Policy</a>
+            <a href="#" class="footer-link">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
